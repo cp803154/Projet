@@ -1,0 +1,40 @@
+<h1>Liste des scenes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Texte</th>
+      <th>Lieu</th>
+      <th>Date</th>
+      <th>Chapitre</th>
+	  <th>Personnages</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scenes.each do |scene| %>
+      <tr>
+        <td><%= scene.texte %></td>
+        <td><%= scene.lieu %></td>
+        <td><%= scene.date %></td>
+        <td><%= associe(scene) %></td>
+		<td><% p = get_perso(scene) %>
+			<% if p.empty? %>
+			<%= "Aucun personnage" %>
+			<% else %>
+			<% p.each do |perso| %>
+			<%= link_to "#{perso.nom} - #{perso.prenom}", perso %>
+			<% end %>
+			<% end %></td>
+        <td><%= link_to 'Montrer', scene %></td>
+        <td><%= link_to 'Editer', edit_scene_path(scene) %></td>
+        <td><%= link_to 'Detruire', scene, method: :delete, data: { confirm: 'Etes vous sur?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nouvelle Scene', new_scene_path %>

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @chapitre.numero %>
+</p>
+
+<p>
+  <strong>Titre:</strong>
+  <%= @chapitre.titre %>
+</p>
+
+<p>
+	<strong>Scenes utilisees:</strong>
+	<% s = get_scene(@chapitre) %>
+	<% s.each do |scene| %>
+	<%= link_to "#{scene.texte[0...20]}", scene %>
+	<% end %>
+</p>
+
+<p>
+	<strong>Personnages utilises:</strong>
+	<% s.each do |scene| %>
+	<% p = get_perso(scene) %>
+	<% p.each do |perso| %>
+	<%= link_to "#{perso.nom} - #{perso.prenom}", perso %>
+	<% end %>
+	<% end %>
+</p>
+
+<%= link_to 'Editer', edit_chapitre_path(@chapitre) %> |
+<%= link_to 'Retour', chapitres_path %>

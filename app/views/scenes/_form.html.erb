@@ -1,0 +1,47 @@
+<%= form_for(@scene) do |f| %>
+  <% if @scene.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@scene.errors.count, "error") %> prohibited this scene from being saved:</h2>
+
+      <ul>
+      <% @scene.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :texte %><br>
+    <%= f.text_area :texte %>
+  </div>
+  <div class="field">
+    <%= f.label :lieu %><br>
+    <%= f.text_field :lieu %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.datetime_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :chapitre_id %><br>
+    <select name="scene[chapitre_id]">
+			<option value=nil>Aucun</option>
+			<% Chapitre.order(:numero).each do |chap| %>
+				<option value="<%= chap.id %>"><%= "#{chap.numero} - #{chap.titre}" %></option>
+			<% end %>
+		</select>
+  </div>
+  <div class="field">
+	<%= f.label :personnage_id %><br>
+	<% for personnage in Personnage.all %>
+		<div>
+			<%= check_box_tag "scene[personnage_ids][]", personnage.id, @scene.personnages.include?(personnage) %>
+			<%= "#{personnage.nom} #{personnage.prenom}" %>
+		</div>
+	<% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,32 @@
+<h1>Liste des personnages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Age</th>
+	  <th>Premier chapitre utilises</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @personnages.each do |personnage| %>
+      <tr>
+        <td><%= personnage.nom %></td>
+        <td><%= personnage.prenom %></td>
+        <td><%= personnage.age %></td>
+		<% c = utilise(personnage) %>
+		<td><%= print_chap(c) %></td>
+        <td><%= link_to 'Montrer', personnage %></td>
+        <td><%= link_to 'Editer', edit_personnage_path(personnage) %></td>
+        <td><%= link_to 'Detruire', personnage, method: :delete, data: { confirm: 'Etes vous sur?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nouveau Personnage', new_personnage_path %>

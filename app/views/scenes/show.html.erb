@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Texte:</strong>
+  <%= @scene.texte %>
+</p>
+
+<p>
+  <strong>Lieu:</strong>
+  <%= @scene.lieu %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @scene.date %>
+</p>
+
+<p>
+  <strong>Chapitre:</strong>
+  <%= associe(@scene) %>
+</p>
+
+<p>
+	<strong>Personnages:</strong>
+	<% p = get_perso(@scene) %>
+	<% if p.empty? %>
+	<%= "Aucun personnage" %>
+	<% else %>
+	<% p.each do |perso| %>
+	<%= link_to "#{perso.nom} - #{perso.prenom}", perso %>
+	<% end %>
+	<% end %>
+</p>
+
+<%= link_to 'Editer', edit_scene_path(@scene) %> |
+<%= link_to 'Retour', scenes_path %>

@@ -8,6 +8,17 @@
 </head>
 <body>
 
+<table>
+  <thead>
+    <tr>
+      <th><%= link_to 'Chapitres', chapitres_path %></th>
+      <th><%= link_to 'Anecdotes', anecdotes_path %></th>
+	  <th><%= link_to 'Scenes', scenes_path %></th>
+	  <th><%= link_to 'Personnages', personnages_path %></th>
+    </tr>
+  </thead>
+</table>
+
 <%= yield %>
 
 </body>

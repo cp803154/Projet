@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nom:</strong>
+  <%= @personnage.nom %>
+</p>
+
+<p>
+  <strong>Prenom:</strong>
+  <%= @personnage.prenom %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @personnage.age %>
+</p>
+
+<p>
+	<strong>Premier chapitre utilise</strong>
+	<% c = utilise(@personnage) %>
+	<%= print_chap(c) %>
+</p>
+
+<%= link_to 'Editer', edit_personnage_path(@personnage) %> |
+<%= link_to 'Retour', personnages_path %>

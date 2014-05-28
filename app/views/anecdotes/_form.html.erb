@@ -1,0 +1,38 @@
+<%= form_for(@anecdote) do |f| %>
+  <% if @anecdote.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@anecdote.errors.count, "error") %> prohibited this anecdote from being saved:</h2>
+
+      <ul>
+      <% @anecdote.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sujet %><br>
+    <%= f.text_field :sujet %>
+  </div>
+  <div class="field">
+    <%= f.label :texte %><br>
+    <%= f.text_area :texte %>
+  </div>
+  <div class="field">
+    <%= f.label :themes %><br>
+    <%= f.text_field :themes %>
+  </div>
+  <div class="field">
+    <%= f.label :chapitre_id %><br>
+    <select name="anecdote[chapitre_id]">
+			<option value=nil>Aucun</option>
+			<% Chapitre.order(:numero).each do |chap| %>
+				<option value="<%= chap.id %>"><%= "#{chap.numero} - #{chap.titre}" %></option>
+			<% end %>
+		</select>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
